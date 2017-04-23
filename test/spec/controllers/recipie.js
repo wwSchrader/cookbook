@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: RecipieCtrl', function () {
+describe('Controller: RecipeCtrl', function () {
 
   // load the controller's module
   beforeEach(module('cookBookApp'));
 
-  var RecipieCtrl,
+  var RecipeCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    RecipieCtrl = $controller('RecipieCtrl', {
+    RecipeCtrl = $controller('RecipeCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
@@ -19,8 +19,8 @@ describe('Controller: RecipieCtrl', function () {
 
   it('should return added ingredient', function () {
     var ingredient = "Flour";
-    RecipieCtrl.addIngredient(ingredient);
-    var returnedIngredients = RecipieCtrl.returnIngredients();
+    RecipeCtrl.addIngredient(ingredient);
+    var returnedIngredients = RecipeCtrl.returnIngredients();
     expect(returnedIngredients[0]).toBe(ingredient);
   });
 });

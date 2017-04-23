@@ -8,7 +8,7 @@
  * Controller of the cookBookApp
  */
 angular.module('cookBookApp')
-  .controller('RecipieCtrl', function () {
+  .controller('RecipeCtrl', function () {
     this.ingredients = [];
 
     this.addIngredient = function(addedIngredient){
