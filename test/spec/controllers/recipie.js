@@ -17,7 +17,10 @@ describe('Controller: RecipieCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(RecipieCtrl.awesomeThings.length).toBe(3);
+  it('should return added ingredient', function () {
+    var ingredient = "Flour";
+    RecipieCtrl.addIngredient(ingredient);
+    var returnedIngredients = RecipieCtrl.returnIngredients();
+    expect(returnedIngredients[0]).toBe(ingredient);
   });
 });
