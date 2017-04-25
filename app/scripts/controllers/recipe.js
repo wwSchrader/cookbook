@@ -8,15 +8,28 @@
  * Controller of the cookBookApp
  */
 angular.module('cookBookApp')
-  .controller('RecipeCtrl', function () {
-    this.ingredients = [];
+  .controller('RecipeCtrl', ['recipeService', function (recipeService) {
 
-    this.addIngredient = function(addedIngredient){
-        this.ingredients.push(addedIngredient);
+    this.allRecipes = recipeService.recipes;
+
+    this.addRecipe = function(recipeName){
+        var newRecipe = {
+            'name': recipeName,
+            'directions': [],
+            'ingredients': [],
+            'category' : 'none'
+        };
+        recipeService.recipes[recipeName] = newRecipe;
     };
 
-    this.returnIngredients = function(){
-        return this.ingredients;
+
+    this.addIngredient = function(recipeName, addedIngredient){
+        console.log(recipeService.recipes.recipeName.ingredients.push(addedIngredient));
+        recipeService.recipes.recipeName.ingredients.push(addedIngredient);
+    };
+
+    this.returnIngredients = function(recipeName){
+        return recipeService.recipes.recipeName;
     }
 
-  });
+  }]);

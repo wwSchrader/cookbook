@@ -6,21 +6,29 @@ describe('Controller: RecipeCtrl', function () {
   beforeEach(module('cookBookApp'));
 
   var RecipeCtrl,
-    scope;
+    scope,
+    mockRecipeSvc;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
     RecipeCtrl = $controller('RecipeCtrl', {
-      $scope: scope
+      $scope: scope,
       // place here mocked dependencies
+
     });
   }));
 
-  it('should return added ingredient', function () {
-    var ingredient = "Flour";
-    RecipeCtrl.addIngredient(ingredient);
-    var returnedIngredients = RecipeCtrl.returnIngredients();
-    expect(returnedIngredients[0]).toBe(ingredient);
+  it('added a new recipe', function(){
+    var newRecipeName = "Apple Pie";
+    var selectedRecipe, allServiceRecipes;
+    RecipeCtrl.addRecipe(newRecipeName);
+    allServiceRecipes = RecipeCtrl.allRecipes
+    for (selectedRecipe in allServiceRecipes) {
+      if (selectedRecipe === newRecipeName) {
+        break;
+      }
+    }
+    expect(selectedRecipe).toBe(newRecipeName);
   });
 });
