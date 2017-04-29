@@ -41,5 +41,8 @@
   },
   "scripts": {
     "test": "karma start test\\karma.conf.js"
+  },
+  "dependencies": {
+    "angular-ui-router": "^0.4.2"
   }
 }
