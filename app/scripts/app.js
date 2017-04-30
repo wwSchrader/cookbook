@@ -34,7 +34,7 @@ angular
       .state('createRecipe', {
         url: '/createRecipe',
         templateUrl: 'views/createRecipe.html',
-        controller: 'RecipeCtrl'
+        controller: 'RecipeCtrl as recipes'
       });
 
   }]);

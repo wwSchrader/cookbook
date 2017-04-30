@@ -12,6 +12,9 @@ angular.module('cookBookApp')
 
     this.allRecipes = recipeService.recipes;
 
+    this.directions = [''];
+    this.ingredients = [''];
+
     this.addRecipe = function(recipeName){
         var newRecipe = {
             'name': recipeName,
@@ -55,5 +58,23 @@ angular.module('cookBookApp')
             }
         }
     };
+
+    this.addIngredientField = function() {
+        this.ingredients.push('');
+    }
+
+    this.removeIngredientField = function(index) {
+        this.ingredients.splice(index, 1);
+    }
+
+    this.addDirectionField = function() {
+        this.directions.push('');
+    }
+
+    this.removeDirectionField = function(index) {
+        this.directions.splice(index, 1);
+    }
+
+
 
   }]);
