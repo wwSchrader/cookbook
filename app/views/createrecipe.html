@@ -1,0 +1,37 @@
+<p>This is the createRecipe view.</p>
+
+<h2>Recipe Name</h2>
+<input id="recipe-name" ng-model="recipes.name">
+
+<h4>Ingredients</h4>
+<ul>
+    <fieldset>
+        <li data-ng-repeat="ingredient in recipes.ingredients track by $index">
+            <input id="recipe-ingredients" value="{{ingredient}}" ng-model="recipes.ingredients[$index]">
+            <button ng-show="$last" ng-click="recipes.addIngredientField()">+</button>
+            <button ng-hide="recipes.ingredients.length === 1" ng-click="recipes.removeIngredientField($index)">-</button>
+        </li>
+    </fieldset>
+</ul>
+
+<h4>Directions</h4>
+<ol>
+    <fieldset>
+        <li data-ng-repeat="direction in recipes.directions track by $index">
+            <input id="recipe-directions" ng-model="recipes.directions[$index]">
+            <button ng-show="$last" ng-click="recipes.addDirectionField()">+</button>
+            <button ng-hide="recipes.directions.length === 1" ng-click="recipes.removeDirectionField($index)">-</button>
+        </li>
+    </fieldset>
+</ol>
+
+<select ng-init="recipes.selectedCategory = recipes.categories[0]" ng-model="recipes.selectedCategory" ng-options="x for x in recipes.categories">
+</select>
+
+<button id="add-recipe-button" ng-click="recipes.addRecipe()">Add Recipe</button>
+
+<p>{{recipes.name}}</p>
+<p>{{recipes.ingredients}}</p>
+<p>{{recipes.directions}}</p>
+<p>{{recipes.selectedCategory}}</p>
+<p>{{recipes.allRecipes}}</p>
