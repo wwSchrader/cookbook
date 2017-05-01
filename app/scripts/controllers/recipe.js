@@ -12,15 +12,19 @@ angular.module('cookBookApp')
 
     this.allRecipes = recipeService.recipes;
 
+    this.name;
     this.directions = [''];
     this.ingredients = [''];
+    this.selectedCategory;
+
+    this.categories = ['Select Category', 'Breakfast', 'Lunch', 'Dinner', 'Dessert'];
 
     this.addRecipe = function(recipeName){
         var newRecipe = {
-            'name': recipeName,
-            'directions': [],
-            'ingredients': [],
-            'category' : 'none'
+            'name': this.name,
+            'directions': this.directions,
+            'ingredients': this.ingredients,
+            'category' : this.selectedCategory
         };
         recipeService.recipes[recipeName] = newRecipe;
     };
