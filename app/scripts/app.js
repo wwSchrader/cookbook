@@ -32,9 +32,18 @@ angular
         controller: 'AboutCtrl'
       })
       .state('createRecipe', {
-        url: '/createRecipe',
-        templateUrl: 'views/createRecipe.html',
-        controller: 'RecipeCtrl as recipes'
+        views: {
+          'main-body': {
+            url: '/createRecipe',
+            templateUrl: 'views/createRecipe.html',
+            controller: 'RecipeCtrl as recipes'
+          },
+          'recipe-navbar': {
+            templateUrl: 'views/recipenavbar.html',
+            controller: 'RecipenavbarCtrl as recipesnavbar'
+          }
+        }
+
       });
 
   }]);

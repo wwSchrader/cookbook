@@ -12,21 +12,21 @@ angular.module('cookBookApp')
 
     this.allRecipes = recipeService.recipes;
 
-    this.name;
+    this.name = '';
     this.directions = [''];
     this.ingredients = [''];
-    this.selectedCategory;
+    this.selectedCategory = '';
 
     this.categories = ['Select Category', 'Breakfast', 'Lunch', 'Dinner', 'Dessert'];
 
-    this.addRecipe = function(recipeName){
+    this.addRecipe = function(){
         var newRecipe = {
             'name': this.name,
             'directions': this.directions,
             'ingredients': this.ingredients,
             'category' : this.selectedCategory
         };
-        recipeService.recipes[recipeName] = newRecipe;
+        recipeService.recipes[this.name] = newRecipe;
     };
 
 
@@ -65,19 +65,19 @@ angular.module('cookBookApp')
 
     this.addIngredientField = function() {
         this.ingredients.push('');
-    }
+    };
 
     this.removeIngredientField = function(index) {
         this.ingredients.splice(index, 1);
-    }
+    };
 
     this.addDirectionField = function() {
         this.directions.push('');
-    }
+    };
 
     this.removeDirectionField = function(index) {
         this.directions.splice(index, 1);
-    }
+    };
 
 
 

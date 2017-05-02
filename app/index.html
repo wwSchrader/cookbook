@@ -48,8 +48,15 @@
       </div>
     </div>
 
+
+
     <div class="container">
-      <div ui-view></div>
+      <div class="row">
+        <div ui-view="recipe-navbar" class="col-sm-2"></div>
+
+        <div ui-view="main-body" class="col-sm-10"></div>
+      </div>
+      <div ui-view class="col-sm-12"></div>
     </div>
 
     <div class="footer">
@@ -90,6 +97,7 @@
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/recipe.js"></script>
         <script src="scripts/services/recipeservice.js"></script>
+        <script src="scripts/controllers/recipenavbar.js"></script>
         <!-- endbuild -->
 </body>
 </html>
