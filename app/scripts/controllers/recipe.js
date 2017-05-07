@@ -8,7 +8,8 @@
  * Controller of the cookBookApp
  */
 angular.module('cookBookApp')
-  .controller('RecipeCtrl', ['recipeService', function (recipeService) {
+  .controller('RecipeCtrl', ['recipeService', 'Upload', '$timeout', function (recipeService, Upload, $timeout) {
+
 
     this.allRecipes = recipeService.recipes;
 
@@ -18,13 +19,40 @@ angular.module('cookBookApp')
     this.selectedCategory = '';
 
     this.categories = ['Select Category', 'Breakfast', 'Lunch', 'Dinner', 'Dessert'];
+    this.f = '';
+    this.errFiles = '';
+
+    this.uploadFiles = function(file, errFiles) {
+        this.f = file;
+        this.errFile = errFiles && errFiles[0];
+        if (file) {
+            file.upload = Upload.upload({
+                url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+                data: {file: file}
+            });
+
+            file.upload.then(function (response) {
+                $timeout(function () {
+                    file.result = response.data;
+                });
+            }, function (response) {
+                if (response.status > 0) {
+                    this.errorMsg = response.status + ': ' + response.data;
+                }
+            }, function (evt) {
+                file.progress = Math.min(100, parseInt(100.0 *
+                                         evt.loaded / evt.total));
+            });
+        }
+    };
 
     this.addRecipe = function(){
         var newRecipe = {
             'name': this.name,
             'directions': this.directions,
             'ingredients': this.ingredients,
-            'category' : this.selectedCategory
+            'category' : this.selectedCategory,
+            'image' : this.f
         };
         recipeService.recipes[this.name] = newRecipe;
     };
@@ -78,7 +106,5 @@ angular.module('cookBookApp')
     this.removeDirectionField = function(index) {
         this.directions.splice(index, 1);
     };
-
-
 
   }]);

@@ -8,10 +8,6 @@
  * Controller of the cookBookApp
  */
 angular.module('cookBookApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('MainCtrl', ['recipeService', function (recipeService)  {
+    this.allRecipes = recipeService.recipes;
+  }]);

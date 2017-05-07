@@ -15,7 +15,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ui.router'
+    'ui.router',
+    'ngFileUpload'
   ])
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
@@ -24,7 +25,7 @@ angular
       .state('main', {
         url: '/',
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl as mainMenuRecipes'
       })
       .state('about', {
         url: '/about',

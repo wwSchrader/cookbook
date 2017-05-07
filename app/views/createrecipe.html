@@ -28,4 +28,11 @@
 <select ng-init="recipes.selectedCategory = recipes.categories[0]" ng-model="recipes.selectedCategory" ng-options="x for x in recipes.categories">
 </select>
 
+<button type="file" ngf-select="recipes.uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-size="1MB" ngf-resize="{width: 300, height: 300, centerCrop: false}">Select Image</button>
+<p>
+The file name: {{recipes.f.name}}
+
+<img ngf-src="recipes.f"/>
+</p>
+
 <button id="add-recipe-button" ng-click="recipes.addRecipe()">Add Recipe</button>
