@@ -43,9 +43,9 @@ angular
         controller: 'SinglerecipeCtrl as singleRecipe'
       })
       .state('createRecipe', {
+        url: '/createRecipe',
         views: {
           'main-body': {
-            url: '/createRecipe',
             templateUrl: 'views/createRecipe.html',
             controller: 'RecipeCtrl as recipes'
           },
