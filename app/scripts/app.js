@@ -29,18 +29,44 @@ angular
     $stateProvider
       .state('main', {
         url: '/',
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl as mainMenuRecipes'
+        views: {
+          'main-body': {
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl as mainMenuRecipes'
+          },
+          'recipe-navbar': {
+            templateUrl: 'views/recipenavbar.html',
+            controller: 'RecipenavbarCtrl as recipesnavbar'
+          }
+        }
       })
       .state('about', {
         url: '/about',
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+        views: {
+          'main-body': {
+            templateUrl: 'views/about.html',
+            controller: 'AboutCtrl'
+          },
+          'recipe-navbar': {
+            templateUrl: 'views/recipenavbar.html',
+            controller: 'RecipenavbarCtrl as recipesnavbar'
+          }
+        }
+
       })
       .state('singleRecipe', {
         url: '/singlerecipe/:id',
-        templateUrl: 'views/singlerecipe.html',
-        controller: 'SinglerecipeCtrl as singleRecipe'
+        views: {
+          'main-body': {
+            templateUrl: 'views/singlerecipe.html',
+            controller: 'SinglerecipeCtrl as singleRecipe'
+          },
+          'recipe-navbar': {
+            templateUrl: 'views/recipenavbar.html',
+            controller: 'RecipenavbarCtrl as recipesnavbar'
+          }
+        }
+
       })
       .state('createRecipe', {
         url: '/createRecipe',
