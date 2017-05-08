@@ -1,0 +1,16 @@
+<h2>{{singleRecipe.aRecipe.name}}</h2>
+<img ng-src="{{singleRecipe.aRecipe.image}}">
+
+<h4>Ingredients</h4>
+<ul>
+    <li data-ng-repeat="ingredient in singleRecipe.aRecipe.ingredients">
+        {{ingredient}}
+    </li>
+</ul>
+
+<h4>Directions</h4>
+<ol>
+    <li data-ng-repeat="direction in singleRecipe.aRecipe.directions">
+    {{direction}}
+    </li>
+</ol>

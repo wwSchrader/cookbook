@@ -1,0 +1,11 @@
+<p>This is the recipeNavBar view.</p>
+
+<ul>
+    <fieldset>
+        <li data-ng-repeat="singleRecipe in recipesnavbar.allRecipes">
+            <a ui-sref="singleRecipe({id: singleRecipe.name})">
+                <p>{{singleRecipe.name}}</p>
+            </a>
+        </li>
+    </fieldset>
+</ul>
