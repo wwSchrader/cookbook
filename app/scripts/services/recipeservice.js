@@ -8,14 +8,20 @@
  * Service in the cookBookApp.
  */
 angular.module('cookBookApp')
-  .service('recipeService', function () {
+  .service('recipeService', ['localStorageService', function (localStorageService) {
     // AngularJS will instantiate a singleton by calling "new" on this function
-    this.recipes = {
-        'Sample Recipe' : {
-            'name': 'Sample Recipe',
-            'ingredients' : ['First ingredient', 'Second ingredient'],
-            'directions' : ['First step', 'Second step'],
-            'category': 'Sample Category'
+
+    this.getRecipes = function(){
+        var recipes = localStorageService.get('cookBookApp');
+
+        if (recipes === null) {
+            recipes =  {};
         }
+
+        return recipes;
     };
-  });
+
+    this.saveRecipes = function(recipeList) {
+        localStorageService.set('cookBookApp', recipeList);
+    };
+  }]);

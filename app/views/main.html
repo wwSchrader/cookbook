@@ -3,7 +3,7 @@
   <div class="items-container" ng-repeat="recipe in mainMenuRecipes.allRecipes">
     <div class="col-md-4">
       <h4>{{recipe.name}}</h4>
-      <img ngf-src="recipe.image" />
+      <img ng-src="{{recipe.image}}">
     </div>
   </div>
 </div>

@@ -8,10 +8,10 @@
  * Controller of the cookBookApp
  */
 angular.module('cookBookApp')
-  .controller('RecipeCtrl', ['recipeService', 'Upload', '$timeout', function (recipeService, Upload, $timeout) {
+  .controller('RecipeCtrl', ['recipeService', function (recipeService) {
 
 
-    this.allRecipes = recipeService.recipes;
+    this.allRecipes = recipeService.getRecipes();
 
     this.name = '';
     this.directions = [''];
@@ -22,73 +22,40 @@ angular.module('cookBookApp')
     this.f = '';
     this.errFiles = '';
 
+    //to upload file and get a reference
     this.uploadFiles = function(file, errFiles) {
         this.f = file;
         this.errFile = errFiles && errFiles[0];
-        if (file) {
-            file.upload = Upload.upload({
-                url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
-                data: {file: file}
-            });
+    };
 
-            file.upload.then(function (response) {
-                $timeout(function () {
-                    file.result = response.data;
-                });
-            }, function (response) {
-                if (response.status > 0) {
-                    this.errorMsg = response.status + ': ' + response.data;
-                }
-            }, function (evt) {
-                file.progress = Math.min(100, parseInt(100.0 *
-                                         evt.loaded / evt.total));
-            });
-        }
+    this.updateRecipeViews = function() {
+        this.allRecipes = recipeService.getRecipes();
     };
 
     this.addRecipe = function(){
+        //convert uploaded picture to url to then save into recipe object
+        var recipePic = document.getElementById('recipePicture');
+        var imgCanvas = document.createElement('canvas'),
+            imgContext = imgCanvas.getContext('2d');
+
+        imgCanvas.width = recipePic.width;
+        imgCanvas.height = recipePic.height;
+
+        imgContext.drawImage(recipePic, 0, 0, recipePic.width, recipePic.height);
+
+        var imgAsDataURL = imgCanvas.toDataURL('image/png');
+
         var newRecipe = {
             'name': this.name,
             'directions': this.directions,
             'ingredients': this.ingredients,
             'category' : this.selectedCategory,
-            'image' : this.f
+            'image' : imgAsDataURL
         };
-        recipeService.recipes[this.name] = newRecipe;
-    };
 
-
-    this.addIngredient = function(recipeName, addedIngredient){
-        recipeService.recipes[recipeName].ingredients.push(addedIngredient);
-    };
-
-    this.removeIngredient = function(recipeName, ingredientToRemove){
-        var index;
-        var ingredientsArray = recipeService.recipes[recipeName].ingredients;
-
-        for (index in ingredientsArray) {
-            if(ingredientsArray[index] === ingredientToRemove) {
-                recipeService.recipes[recipeName].ingredients.splice(index, 1);
-                break;
-            }
-        }
-    };
-
-    this.addDirection = function(recipeName, addedDirection){
-        recipeService.recipes[recipeName].directions.push(addedDirection);
-
-    };
-
-    this.removeDirection = function(recipeName, directionToRemove) {
-        var index;
-        var directionsArray = recipeService.recipes[recipeName].directions;
-
-        for (index in directionsArray) {
-            if (directionsArray[index] === directionToRemove) {
-                recipeService.recipes[recipeName].directions.splice(index, 1);
-                break;
-            }
-        }
+        this.allRecipes[this.name] = newRecipe;
+        recipeService.saveRecipes(this.allRecipes);
+       this.updateRecipeViews();
     };
 
     this.addIngredientField = function() {

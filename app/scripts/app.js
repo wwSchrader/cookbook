@@ -16,9 +16,14 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.router',
-    'ngFileUpload'
+    'ngFileUpload',
+    'LocalStorageModule'
   ])
-  .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', 'localStorageServiceProvider',
+    function ($stateProvider, $urlRouterProvider, localStorageServiceProvider) {
+    localStorageServiceProvider
+      .setPrefix('cookBookApp');
+
     $urlRouterProvider.otherwise('/');
 
     $stateProvider

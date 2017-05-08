@@ -9,5 +9,5 @@
  */
 angular.module('cookBookApp')
   .controller('MainCtrl', ['recipeService', function (recipeService)  {
-    this.allRecipes = recipeService.recipes;
+    this.allRecipes = recipeService.getRecipes();
   }]);
