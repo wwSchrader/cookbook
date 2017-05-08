@@ -37,6 +37,11 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .state('singleRecipe', {
+        url: '/singlerecipe/:id',
+        templateUrl: 'views/singlerecipe.html',
+        controller: 'SinglerecipeCtrl as singleRecipe'
+      })
       .state('createRecipe', {
         views: {
           'main-body': {
@@ -49,7 +54,6 @@ angular
             controller: 'RecipenavbarCtrl as recipesnavbar'
           }
         }
-
       });
 
   }]);

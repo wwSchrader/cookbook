@@ -24,4 +24,11 @@ angular.module('cookBookApp')
     this.saveRecipes = function(recipeList) {
         localStorageService.set('cookBookApp', recipeList);
     };
+
+    this.getSingleRecipe = function(recipeName) {
+        var recipes = localStorageService.get('cookBookApp');
+
+        return recipes[recipeName];
+
+    };
   }]);
