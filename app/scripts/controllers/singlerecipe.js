@@ -10,5 +10,9 @@
 angular.module('cookBookApp')
   .controller('SinglerecipeCtrl', ['recipeService', '$stateParams', function (recipeService, $stateParams) {
     this.aRecipe = recipeService.getSingleRecipe($stateParams.id);
-    this.stateParams = $stateParams.id;
+
+    this.deleteRecipe = function(recipeName) {
+        recipeService.removeRecipe(recipeName);
+    };
+
   }]);

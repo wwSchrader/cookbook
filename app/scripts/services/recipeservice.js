@@ -29,6 +29,13 @@ angular.module('cookBookApp')
         var recipes = localStorageService.get('cookBookApp');
 
         return recipes[recipeName];
+    };
 
+    this.removeRecipe = function(recipeName) {
+        var recipes = localStorageService.get('cookBookApp');
+
+        delete recipes[recipeName];
+
+        localStorageService.set('cookBookApp', recipes);
     };
   }]);
