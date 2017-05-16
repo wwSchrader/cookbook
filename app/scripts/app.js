@@ -40,6 +40,19 @@ angular
           }
         }
       })
+      .state('editRecipe', {
+        url: '/editrecipe/:id',
+        views: {
+          'main-body': {
+            templateUrl: 'views/editrecipe.html',
+            controller: 'EditrecipeCtrl as editRecipe'
+          },
+          'recipe-navbar': {
+            templateUrl: 'views/recipenavbar.html',
+            controller: 'RecipenavbarCtrl as recipesnavbar'
+          }
+        }
+      })
       .state('about', {
         url: '/about',
         views: {
