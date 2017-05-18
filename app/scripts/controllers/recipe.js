@@ -26,18 +26,6 @@ angular.module('cookBookApp')
     };
 
     this.addRecipe = function(){
-        //convert uploaded picture to url to then save into recipe object
-        // var recipePic = document.getElementById('croppedRecipePicture');
-        // var imgCanvas = document.createElement('canvas'),
-        //     imgContext = imgCanvas.getContext('2d');
-
-        // imgCanvas.width = recipePic.width;
-        // imgCanvas.height = recipePic.height;
-
-        // imgContext.drawImage(recipePic, 0, 0, recipePic.width, recipePic.height);
-
-        // var imgAsDataURL = imgCanvas.toDataURL('image/png');
-
         var newRecipe = {
             'name': this.name,
             'directions': this.directions,
@@ -48,7 +36,7 @@ angular.module('cookBookApp')
 
         this.allRecipes[this.name] = newRecipe;
         recipeService.saveRecipes(this.allRecipes);
-       this.updateRecipeViews();
+        this.updateRecipeViews();
     };
 
     this.addIngredientField = function() {
