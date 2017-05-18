@@ -17,16 +17,9 @@ angular.module('cookBookApp')
     this.directions = [''];
     this.ingredients = [''];
     this.selectedCategory = '';
+    this.croppedDataUrl = '';
 
     this.categories = ['Select Category', 'Breakfast', 'Lunch', 'Dinner', 'Dessert'];
-    this.f = '';
-    this.errFiles = '';
-
-    //to upload file and get a reference
-    this.uploadFiles = function(file, errFiles) {
-        this.f = file;
-        this.errFile = errFiles && errFiles[0];
-    };
 
     this.updateRecipeViews = function() {
         this.allRecipes = recipeService.getRecipes();
@@ -34,23 +27,23 @@ angular.module('cookBookApp')
 
     this.addRecipe = function(){
         //convert uploaded picture to url to then save into recipe object
-        var recipePic = document.getElementById('recipePicture');
-        var imgCanvas = document.createElement('canvas'),
-            imgContext = imgCanvas.getContext('2d');
+        // var recipePic = document.getElementById('croppedRecipePicture');
+        // var imgCanvas = document.createElement('canvas'),
+        //     imgContext = imgCanvas.getContext('2d');
 
-        imgCanvas.width = recipePic.width;
-        imgCanvas.height = recipePic.height;
+        // imgCanvas.width = recipePic.width;
+        // imgCanvas.height = recipePic.height;
 
-        imgContext.drawImage(recipePic, 0, 0, recipePic.width, recipePic.height);
+        // imgContext.drawImage(recipePic, 0, 0, recipePic.width, recipePic.height);
 
-        var imgAsDataURL = imgCanvas.toDataURL('image/png');
+        // var imgAsDataURL = imgCanvas.toDataURL('image/png');
 
         var newRecipe = {
             'name': this.name,
             'directions': this.directions,
             'ingredients': this.ingredients,
             'category' : this.selectedCategory,
-            'image' : imgAsDataURL
+            'image' : this.croppedDataUrl
         };
 
         this.allRecipes[this.name] = newRecipe;

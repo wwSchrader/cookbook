@@ -17,6 +17,7 @@ angular
     'ngTouch',
     'ui.router',
     'ngFileUpload',
+    'ngImgCrop',
     'LocalStorageModule'
   ])
   .config(['$stateProvider', '$urlRouterProvider', 'localStorageServiceProvider',

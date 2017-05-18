@@ -28,14 +28,22 @@
 <select ng-init="recipes.selectedCategory = recipes.categories[0]" ng-model="recipes.selectedCategory" ng-options="x for x in recipes.categories">
 </select>
 
-<button type="file" ngf-select="recipes.uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-size="1MB" ngf-resize="{width: 300, height: 300, centerCrop: false}">Select Image</button>
+<!-- <button type="file" ngf-select="recipes.uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-size="1MB" ngf-resize="{width: 300, height: 300, centerCrop: false}">Select Image</button> -->
 
-<p>
-The file name: {{recipes.f.name}}
+<div class="column">
+    <button ngf-select ng-model="picFile" accept="image/*">
+                Select Picture</button>
 
-<img id="recipePicture" ngf-src="recipes.f"/>
-</p>
+    <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
+                 class="cropArea">
+        <img-crop image="picFile  | ngfDataUrl"
+        result-image="recipes.croppedDataUrl" area-type="square">
+        </img-crop>
+    </div>
+
+    <img ng-src="{{recipes.croppedDataUrl}}" />
+</div>
 
 <a href="#/">
-<button id="add-recipe-button" ng-click="recipes.addRecipe()">Add Recipe</button>
+    <button id="add-recipe-button" ng-click="recipes.addRecipe()">Add Recipe</button>
 </a>

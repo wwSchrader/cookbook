@@ -19,6 +19,14 @@ body {
   height: 100%;
 }
 
+/*The area in create recipes that the user will define the crop area */
+.cropArea {
+  background: #E4E4E4;
+  overflow: hidden;
+  width: 500px;
+  height: 350px;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
