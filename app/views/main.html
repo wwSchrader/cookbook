@@ -7,10 +7,12 @@
 
     <div class="carousel-inner">
       <div ng-repeat="recipe in mainMenuRecipes.allRecipes" class="item" ng-class="{active: $index === 0}">
+        <a ui-sref="singleRecipe({id: recipe.name})">
         <img ng-src="{{recipe.image}}">
         <div class="carousel-caption">
           <p>{{recipe.name}}</p>
         </div>
+        </a>
       </div>
 
 
