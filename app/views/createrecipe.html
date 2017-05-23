@@ -1,47 +1,60 @@
 <p>This is the createRecipe view.</p>
 
-<h2>Recipe Name</h2>
-<input id="recipe-name" ng-model="recipes.name">
+<form>
+    <div class="form-group">
+        <label for="recipe-name">Recipe Name</label>
+        <input id="recipe-name" class="form-control" ng-model="recipes.name">
 
-<h4>Ingredients</h4>
-<ul>
-    <fieldset>
-        <li data-ng-repeat="ingredient in recipes.ingredients track by $index">
-            <input id="recipe-ingredients" value="{{ingredient}}" ng-model="recipes.ingredients[$index]">
-            <button ng-show="$last" ng-click="recipes.addIngredientField()">+</button>
-            <button ng-hide="recipes.ingredients.length === 1" ng-click="recipes.removeIngredientField($index)">-</button>
-        </li>
-    </fieldset>
-</ul>
-
-<h4>Directions</h4>
-<ol>
-    <fieldset>
-        <li data-ng-repeat="direction in recipes.directions track by $index">
-            <input id="recipe-directions" ng-model="recipes.directions[$index]">
-            <button ng-show="$last" ng-click="recipes.addDirectionField()">+</button>
-            <button ng-hide="recipes.directions.length === 1" ng-click="recipes.removeDirectionField($index)">-</button>
-        </li>
-    </fieldset>
-</ol>
-
-<select ng-init="recipes.selectedCategory = recipes.categories[0]" ng-model="recipes.selectedCategory" ng-options="x for x in recipes.categories">
-</select>
-
-<div class="column">
-    <button ngf-select ng-model="picFile" accept="image/*">
-                Select Picture</button>
-
-    <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
-                 class="cropArea">
-        <img-crop image="picFile  | ngfDataUrl"
-        result-image="recipes.croppedDataUrl" area-type="square">
-        </img-crop>
+    <div class="form-group form-inline">
+        <label for="recipe-ingredients">Ingredients</label>
+        <ul>
+            <fieldset>
+                <li data-ng-repeat="ingredient in recipes.ingredients track by $index">
+                    <input id="recipe-ingredients" class="form-control" value="{{ingredient}}" ng-model="recipes.ingredients[$index]">
+                    <button ng-show="$last" ng-click="recipes.addIngredientField()">+</button>
+                    <button ng-hide="recipes.ingredients.length === 1" ng-click="recipes.removeIngredientField($index)">-</button>
+                </li>
+            </fieldset>
+        </ul>
     </div>
 
-    <img ng-src="{{recipes.croppedDataUrl}}" />
-</div>
+    <div class="form-group form-inline">
+        <label for="recipe-directions">Directions</label>
+        <ol>
+            <fieldset>
+                <li data-ng-repeat="direction in recipes.directions track by $index">
+                    <input id="recipe-directions" class="form-control" ng-model="recipes.directions[$index]">
+                    <button ng-show="$last" ng-click="recipes.addDirectionField()">+</button>
+                    <button ng-hide="recipes.directions.length === 1" ng-click="recipes.removeDirectionField($index)">-</button>
+                </li>
+            </fieldset>
+        </ol>
+    </div>
 
-<a href="#/">
-    <button id="add-recipe-button" ng-click="recipes.addRecipe()">Add Recipe</button>
-</a>
+    <div class="form-group">
+        <label for="recipe-category">Category</label>
+        <select id="recipe-category" class="form-control" ng-init="recipes.selectedCategory = recipes.categories[0]" ng-model="recipes.selectedCategory" ng-options="x for x in recipes.categories">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <div class="column">
+            <label for="recipe-picture-btn">Recipe Picture</label>
+            <button id="recipe-picture-btn" ngf-select ng-model="picFile" accept="image/*">
+                        Select Picture</button>
+
+            <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
+                         class="cropArea">
+                <img-crop image="picFile  | ngfDataUrl"
+                result-image="recipes.croppedDataUrl" area-type="square">
+                </img-crop>
+            </div>
+
+            <img ng-src="{{recipes.croppedDataUrl}}" />
+        </div>
+    </div>
+
+    <a href="#/">
+        <button id="add-recipe-button" ng-click="recipes.addRecipe()">Add Recipe</button>
+    </a>
+</form>
