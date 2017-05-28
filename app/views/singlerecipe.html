@@ -16,9 +16,9 @@
 </ol>
 
 <a href="#/">
-<button ng-click="singleRecipe.deleteRecipe(singleRecipe.aRecipe.name)">Delete</button>
+<button type="button" class="btn btn-default" ng-click="singleRecipe.deleteRecipe(singleRecipe.aRecipe.name)">Delete</button>
 </a>
 
 <a ui-sref="editRecipe({id: singleRecipe.aRecipe.name})">
-    <button>Edit</button>
+    <button type="button" class="btn btn-default">Edit</button>
 </a>
