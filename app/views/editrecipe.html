@@ -1,0 +1,53 @@
+<p>This is the editRecipe view.</p>
+
+<form>
+
+    <div class="form-group">
+        <label for="recipe-name">Name</label>
+        <input id="recipe-name" class="form-control" value="{{editRecipe.aRecipe.name}}" ng-model="editRecipe.name">
+    </div>
+
+    <div class="form-group form-inline">
+        <label for="recipe-ingredients">Ingredients</label>
+        <ul>
+            <fieldset>
+                <li data-ng-repeat="ingredient in editRecipe.ingredients track by $index">
+                    <input id="recipe-ingredients" class="form-control" value="{{ingredient}}" ng-model="editRecipe.ingredients[$index]">
+                    <button type="button" class="btn btn-default" ng-show="$last" ng-click="editRecipe.addIngredientField()">+</button>
+                    <button type="button" class="btn btn-default" ng-hide="editRecipe.ingredients.length === 1" ng-click="editRecipe.removeIngredientField($index)">-</button>
+                </li>
+            </fieldset>
+        </ul>
+    </div>
+
+    <div class="form-group form-inline">
+        <label for="recipe-directions">Directions</label>
+        <ol>
+            <fieldset>
+                <li data-ng-repeat="direction in editRecipe.directions track by $index">
+                    <input id="recipe-directions" class="form-control" ng-model="editRecipe.directions[$index]">
+                    <button type="button" class="btn btn-default" ng-show="$last" ng-click="editRecipe.addDirectionField()">+</button>
+                    <button ng-hide="editRecipe.directions.length === 1" ng-click="editRecipe.removeDirectionField($index)">-</button>
+                </li>
+            </fieldset>
+        </ol>
+    </div>
+
+    <div class="form-group">
+        <label for="recipe-category">Category</label>
+        <select id="recipe-category" class="form-control" ng-init="editRecipe.selectedCategory = editRecipe.aRecipe.category" ng-model="editRecipe.selectedCategory" ng-options="x for x in editRecipe.categories">
+        </select>
+    </div>
+
+
+    <img ng-src="{{editRecipe.aRecipe.image}}">
+
+    <a ui-sref="singleRecipe({id: editRecipe.name})">
+        <button type="button" class="btn btn-default" ng-click="editRecipe.updateRecipe()">Update</button>
+    </a>
+
+    <a href="#/">
+        <button type="button" class="btn btn-default" ng-click="editRecipe.deleteRecipe()">Delete</button>
+    </a>
+
+</form>
