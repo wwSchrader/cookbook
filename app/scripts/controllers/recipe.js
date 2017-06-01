@@ -8,7 +8,7 @@
  * Controller of the cookBookApp
  */
 angular.module('cookBookApp')
-  .controller('RecipeCtrl', ['recipeService', function (recipeService) {
+  .controller('RecipeCtrl', ['recipeService', '$mdDialog', '$scope', function (recipeService, $mdDialog, $scope) {
 
 
     this.allRecipes = recipeService.getRecipes();
@@ -17,7 +17,7 @@ angular.module('cookBookApp')
     this.directions = [''];
     this.ingredients = [''];
     this.selectedCategory = '';
-    this.croppedDataUrl = '';
+    $scope.croppedDataUrl = '';
 
     this.categories = ['Select Category', 'Breakfast', 'Lunch', 'Dinner', 'Dessert'];
 
@@ -31,7 +31,7 @@ angular.module('cookBookApp')
             'directions': this.directions,
             'ingredients': this.ingredients,
             'category' : this.selectedCategory,
-            'image' : this.croppedDataUrl
+            'image' : $scope.croppedDataUrl
         };
 
         this.allRecipes[this.name] = newRecipe;
@@ -53,6 +53,23 @@ angular.module('cookBookApp')
 
     this.removeDirectionField = function(index) {
         this.directions.splice(index, 1);
+    };
+
+    this.addPicture = function(ev) {
+        console.log('Button Clicked');
+        $mdDialog.show({
+          controller: 'AddpictureCtrl as picture',
+          templateUrl: 'views/addpicture.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:true,
+          fullscreen: this.customFullscreen
+        })
+        .then(function(picture) {
+            $scope.croppedDataUrl = picture;
+        }, function() {
+            console.log('dialog canceled');
+        });
     };
 
   }]);

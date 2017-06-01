@@ -37,22 +37,9 @@
         </select>
     </div>
 
-    <div class="form-group">
-        <div class="column">
-            <label for="recipe-picture-btn">Recipe Picture</label>
-            <button id="recipe-picture-btn" type="button" class="btn btn-default" ngf-select ng-model="picFile" accept="image/*">
-                        Select Picture</button>
+    <button ng-click="recipes.addPicture($event)">Add Picture</button>
 
-            <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
-                         class="cropArea">
-                <img-crop image="picFile  | ngfDataUrl"
-                result-image="recipes.croppedDataUrl" area-type="square">
-                </img-crop>
-            </div>
-
-            <img ng-src="{{recipes.croppedDataUrl}}" />
-        </div>
-    </div>
+    <img ng-src="{{croppedDataUrl}}" />
 
     <a href="#/">
         <button id="add-recipe-button" type="button" class="btn btn-default" ng-click="recipes.addRecipe()">Add Recipe</button>

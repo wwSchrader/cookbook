@@ -18,7 +18,10 @@ angular
     'ui.router',
     'ngFileUpload',
     'ngImgCrop',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'ngAnimate',
+    'ngAria',
+    'ngMaterial'
   ])
   .config(['$stateProvider', '$urlRouterProvider', 'localStorageServiceProvider',
     function ($stateProvider, $urlRouterProvider, localStorageServiceProvider) {
