@@ -21,7 +21,7 @@
                             <!-- Div is to keep glyphicon inside input field -->
                             <input id="recipe-ingredients" name="ingredientName" class="form-control" value="{{ingredient}}" ng-model="recipes.ingredients[$index]" required="">
                             <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="ingredientFieldForm.ingredientName.$invalid && (form.$submitted || ingredientFieldForm.ingredientName.$touched)"></span>
-                            <span if="ingredientHelpBlock" class="help-block" ng-show="ingredientFieldForm.ingredientName.$invalid && (form.$submitted || ingredientFieldForm.ingredientName.$touched)">Please provide an ingredient.</span>
+                            <span id="ingredientHelpBlock" class="help-block" ng-show="ingredientFieldForm.ingredientName.$invalid && (form.$submitted || ingredientFieldForm.ingredientName.$touched)">Please provide an ingredient.</span>
                         </div>
                         <button type="button" class="btn btn-default" ng-show="$last" ng-click="recipes.addIngredientField()">+</button>
                         <button type="button" class="btn btn-default" ng-hide="recipes.ingredients.length === 1" ng-click="recipes.removeIngredientField($index)">-</button>
@@ -35,10 +35,16 @@
         <label for="recipe-directions">Directions</label>
         <ol>
             <fieldset>
-                <li data-ng-repeat="direction in recipes.directions track by $index">
-                    <input id="recipe-directions" class="form-control" ng-model="recipes.directions[$index]">
-                    <button type="button" class="btn btn-default" ng-show="$last" ng-click="recipes.addDirectionField()">+</button>
-                    <button type="button" class="btn btn-default" ng-hide="recipes.directions.length === 1" ng-click="recipes.removeDirectionField($index)">-</button>
+                <li data-ng-repeat="direction in recipes.directions track by $index" ng-class="{'has-error': directionFieldForm.directionName.$invalid && (form.$submitted || directionFieldForm.directionName.$touched)}">
+                    <ng-form name="directionFieldForm">
+                        <div class="form-group has-feedback">
+                            <input id="recipe-directions" name="directionName" class="form-control" ng-model="recipes.directions[$index]" required="">
+                            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="directionFieldForm.directionName.$invalid && (form.$submitted || directionFieldForm.directionName.$touched)"></span>
+                            <span class="help-block" ng-show="directionFieldForm.directionName.$invalid && (form.$submitted || directionFieldForm.directionName.$touched)">Please provide a direction.</span>
+                        </div>
+                        <button type="button" class="btn btn-default" ng-show="$last" ng-click="recipes.addDirectionField()">+</button>
+                        <button type="button" class="btn btn-default" ng-hide="recipes.directions.length === 1" ng-click="recipes.removeDirectionField($index)">-</button>
+                    </ng-form>
                 </li>
             </fieldset>
         </ol>
