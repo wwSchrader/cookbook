@@ -1,9 +1,14 @@
 <p>This is the createRecipe view.</p>
 
-<form>
-    <div class="form-group">
-        <label for="recipe-name">Recipe Name</label>
-        <input id="recipe-name" class="form-control" ng-model="recipes.name">
+<form novalidate name="form">
+    <div class="form-group has-feedback" ng-class="{'has-error': form.recipeName.$invalid && (form.$submitted || form.recipeName.$touched)}">
+        <label class="control-label" for="recipe-name">Recipe Name</label>
+        <input id="recipe-name" name="recipeName" class="form-control" ng-model="recipes.name" required="" />
+        <span ng-show="form.recipeName.$invalid && (form.$submitted || form.recipeName.$touched)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+        <div ng-show="form.$submitted || form.recipeName.$touched">
+            <span class="help-block" ng-show="form.recipeName.$error.required">Please provide a name.</span>
+        </div>
+    </div>
 
     <div class="form-group form-inline">
         <label for="recipe-ingredients">Ingredients</label>
@@ -42,6 +47,6 @@
     <img ng-src="{{croppedDataUrl}}" />
 
     <a href="#/">
-        <button id="add-recipe-button" type="button" class="btn btn-default" ng-click="recipes.addRecipe()">Add Recipe</button>
+        <input type="submit" id="add-recipe-button" type="button" class="btn btn-default" ng-click="recipes.addRecipe()" value="Add Recipe">
     </a>
 </form>
