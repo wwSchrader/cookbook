@@ -10,14 +10,22 @@
         </div>
     </div>
 
-    <div class="form-group form-inline">
-        <label for="recipe-ingredients">Ingredients</label>
+    <div class="form-inline" >
+        <label class="control-label" for="recipe-ingredients">Ingredients</label>
         <ul>
             <fieldset>
-                <li data-ng-repeat="ingredient in recipes.ingredients track by $index">
-                    <input id="recipe-ingredients" class="form-control" value="{{ingredient}}" ng-model="recipes.ingredients[$index]">
-                    <button type="button" class="btn btn-default" ng-show="$last" ng-click="recipes.addIngredientField()">+</button>
-                    <button type="button" class="btn btn-default" ng-hide="recipes.ingredients.length === 1" ng-click="recipes.removeIngredientField($index)">-</button>
+                <li data-ng-repeat="ingredient in recipes.ingredients track by $index" class="" ng-class="{'has-error': ingredientFieldForm.ingredientName.$invalid && (form.$submitted || ingredientFieldForm.ingredientName.$touched)}">
+                    <ng-form name="ingredientFieldForm">
+                        <!-- Use ng-form to evaluate each input seperately and indepently for validation -->
+                        <div class="form-group has-feedback" >
+                            <!-- Div is to keep glyphicon inside input field -->
+                            <input id="recipe-ingredients" name="ingredientName" class="form-control" value="{{ingredient}}" ng-model="recipes.ingredients[$index]" required="">
+                            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="ingredientFieldForm.ingredientName.$invalid && (form.$submitted || ingredientFieldForm.ingredientName.$touched)"></span>
+                            <span if="ingredientHelpBlock" class="help-block" ng-show="ingredientFieldForm.ingredientName.$invalid && (form.$submitted || ingredientFieldForm.ingredientName.$touched)">Please provide an ingredient.</span>
+                        </div>
+                        <button type="button" class="btn btn-default" ng-show="$last" ng-click="recipes.addIngredientField()">+</button>
+                        <button type="button" class="btn btn-default" ng-hide="recipes.ingredients.length === 1" ng-click="recipes.removeIngredientField($index)">-</button>
+                    </ng-form>
                 </li>
             </fieldset>
         </ul>
