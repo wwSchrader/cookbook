@@ -8,7 +8,7 @@
  * Controller of the cookBookApp
  */
 angular.module('cookBookApp')
-  .controller('RecipeCtrl', ['recipeService', '$mdDialog', '$scope', function (recipeService, $mdDialog, $scope) {
+  .controller('RecipeCtrl', ['recipeService', '$mdDialog', '$scope', '$state', function (recipeService, $mdDialog, $scope, $state) {
 
 
     this.allRecipes = recipeService.getRecipes();
@@ -27,7 +27,7 @@ angular.module('cookBookApp')
 
     this.addRecipe = function(){
 
-        if ($scope.form.valid) {
+        if ($scope.form.$valid) {
             var newRecipe = {
                 'name': this.name,
                 'directions': this.directions,
@@ -39,6 +39,7 @@ angular.module('cookBookApp')
             this.allRecipes[this.name] = newRecipe;
             recipeService.saveRecipes(this.allRecipes);
             this.updateRecipeViews();
+            $state.go('main');
         }
     };
 
