@@ -26,17 +26,20 @@ angular.module('cookBookApp')
     };
 
     this.addRecipe = function(){
-        var newRecipe = {
-            'name': this.name,
-            'directions': this.directions,
-            'ingredients': this.ingredients,
-            'category' : this.selectedCategory,
-            'image' : $scope.croppedDataUrl
-        };
 
-        this.allRecipes[this.name] = newRecipe;
-        recipeService.saveRecipes(this.allRecipes);
-        this.updateRecipeViews();
+        if ($scope.form.valid) {
+            var newRecipe = {
+                'name': this.name,
+                'directions': this.directions,
+                'ingredients': this.ingredients,
+                'category' : this.selectedCategory,
+                'image' : $scope.croppedDataUrl
+            };
+
+            this.allRecipes[this.name] = newRecipe;
+            recipeService.saveRecipes(this.allRecipes);
+            this.updateRecipeViews();
+        }
     };
 
     this.addIngredientField = function() {

@@ -63,7 +63,7 @@
 
     <img ng-src="{{croppedDataUrl}}" />
 
-    <a href="#/">
-        <input type="submit" id="add-recipe-button" type="button" class="btn btn-default" ng-click="recipes.addRecipe()" value="Add Recipe">
-    </a>
+    <input name="submitButton" type="submit" id="add-recipe-button" type="button" class="btn btn-primary" ng-class="" ng-click="recipes.addRecipe()" value="Add Recipe"/>
+    <div class="alert alert-danger" role="alert" ng-show="form.$invalid && form.$submitted"><strong>Oops!</strong> Please fix the errors first!</div>
+
 </form>
