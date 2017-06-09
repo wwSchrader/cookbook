@@ -19,7 +19,7 @@ angular.module('cookBookApp')
     this.selectedCategory = '';
     $scope.croppedDataUrl = '';
 
-    this.categories = ['Select Category', 'Breakfast', 'Lunch', 'Dinner', 'Dessert'];
+    this.categories = ['Breakfast', 'Lunch', 'Dinner', 'Dessert'];
 
     this.updateRecipeViews = function() {
         this.allRecipes = recipeService.getRecipes();

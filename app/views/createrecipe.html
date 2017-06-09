@@ -50,10 +50,13 @@
         </ol>
     </div>
 
-    <div class="form-group">
-        <label for="recipe-category">Category</label>
-        <select id="recipe-category" class="form-control" ng-init="recipes.selectedCategory = recipes.categories[0]" ng-model="recipes.selectedCategory" ng-options="x for x in recipes.categories">
+    <div class="form-group has-feedback" ng-class="{'has-error': form.categoryName.$invalid && (form.$submitted || form.categoryName.$touched)}">
+        <label class="control-label" for="recipe-category">Category</label>
+        <select id="recipe-category" name="categoryName" class="form-control" ng-model="recipes.selectedCategory" ng-options="x for x in recipes.categories" required="">
+            <option value="">Select Category</option>
         </select>
+        <span class="help-block" ng-show="form.categoryName.$invalid && (form.$submitted || form.categoryName.$touched)">Please select a category</span>
+
     </div>
 
     <button ng-click="recipes.addPicture($event)">Add Picture</button>
