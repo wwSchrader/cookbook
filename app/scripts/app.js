@@ -89,7 +89,7 @@ angular
         url: '/createRecipe',
         views: {
           'main-body': {
-            templateUrl: 'views/createRecipe.html',
+            templateUrl: 'views/createrecipe.html',
             controller: 'RecipeCtrl as recipes'
           },
           'recipe-navbar': {
